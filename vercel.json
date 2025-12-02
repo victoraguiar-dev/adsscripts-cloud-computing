@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/clima",
+      "destination": "/api/clima.js"
+    }
+  ]
+}

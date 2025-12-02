@@ -1,24 +1,20 @@
-export async function handler(event, context) {
-  try {
-    const city = event.queryStringParameters.city;
-    const API_KEY = process.env.OPENWEATHER_API_KEY;
+export default async function handler(req, res) {
+    const API_KEY = process.env.OPENWEATHER_KEY;  // 🔒 escondida no servidor
 
-    if (!city) return { statusCode: 400, body: "City missing" };
-    if (!API_KEY) return { statusCode: 500, body: "Missing API key" };
+    const { cidade } = req.query;
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-      city
-    )}&appid=${API_KEY}&units=metric&lang=pt_br`;
+    if (!cidade)
+        return res.status(400).json({ error: "Cidade não informada" });
 
-    const resp = await fetch(url);
-    const data = await resp.json();
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade},BR&appid=${API_KEY}&units=metric&lang=pt_br`;
 
-    return {
-      statusCode: resp.ok ? 200 : resp.status,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    };
-  } catch (err) {
-    return { statusCode: 500, body: err.message };
-  }
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        return res.status(200).json(data);
+
+    } catch (err) {
+        return res.status(500).json({ error: "Erro ao consultar API" });
+    }
 }

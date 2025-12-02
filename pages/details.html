@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalhes do Projeto</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header class="header">
+      <h1>Detalhes do Projeto</h1>
+      <a href="../index.html" class="link-btn">Voltar</a>
+    </header>
+
+    <p>Projeto educacional demonstrando como consumir API externa com proteção da chave via serverless function.</p>
+
+    <button id="githubBtn" class="primary-btn">Abrir Repositório</button>
+
+  </main>
+
+  <script>
+    const GITHUB_REPO_URL = "https://github.com/SEU_USUARIO/weather-app";
+
+    document.getElementById("githubBtn").addEventListener("click", () => {
+      window.open(GITHUB_REPO_URL, "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>

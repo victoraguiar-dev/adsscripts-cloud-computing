@@ -1,5 +1,4 @@
-{
-  "cidades": [
+[
     "São Paulo,BR",
     "Rio de Janeiro,BR",
     "Brasília,BR",
@@ -12,6 +11,7 @@
     "Porto Alegre,BR",
     "Belém,BR",
     "Goiânia,BR",
+    "Guarulhos,BR",
     "Campinas,BR",
     "São Luís,BR",
     "Maceió,BR",
@@ -23,6 +23,7 @@
     "Aracaju,BR",
     "Cuiabá,BR",
     "Vitória,BR",
+    "Macapá,BR",
     "Palmas,BR",
     "Santos,BR",
     "Ribeirão Preto,BR",
@@ -34,5 +35,4 @@
     "Londrina,BR",
     "Joinville,BR",
     "Maringá,BR"
-  ]
-}
+]

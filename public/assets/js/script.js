@@ -3,6 +3,8 @@ async function carregarCidades() {
         const response = await fetch("/assets/data/cidades.json");
         const cidades = await response.json();
 
+        console.log("JSON recebido:", cidades);
+
         const select = document.getElementById("cidadeSelect");
         select.innerHTML = "<option value=''>Selecione uma cidade</option>";
 

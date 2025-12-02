@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Clima Brasil</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -17,10 +17,13 @@
     <div id="resultado"></div>
 
     <br><br>
-    <button onclick="window.location.href='pages/details.html'">
+
+    <button onclick="window.location.href='/pages/details.html'">
         Página de Detalhes do Projeto
     </button>
 
-    <script type="module" src="assets/js/script.js"></script>
+    <!-- IMPORTANTE! Caminhos absolutos no Vercel -->
+    <script type="module" src="/assets/js/script.js"></script>
+
 </body>
 </html>

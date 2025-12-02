@@ -28,7 +28,7 @@ async function buscarClima() {
         return;
     }
 
-    const response = await fetch(`/api/wheater?cidade=${encodeURIComponent(cidade)}`);
+    const response = await fetch(`/api/clima?cidade=${encodeURIComponent(cidade)}`);
     const data = await response.json();
 
     if (data.error) {

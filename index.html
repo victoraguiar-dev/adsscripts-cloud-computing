@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clima Brasil — Teste Combo</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>Clima Brasil</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <main style="max-width:720px;margin:40px auto">
-    <h1>Teste: combo de cidades</h1>
 
-    <label for="cidadeSelect">Selecione uma cidade:</label><br/>
-    <select id="cidadeSelect" style="width:100%;padding:8px;margin-top:8px"></select>
+    <h1>Consulta de Clima</h1>
 
-    <div style="margin-top:16px">
-      <button id="btnBuscar">Buscar (teste)</button>
-    </div>
+    <label for="cidadeSelect">Selecione uma cidade:</label>
+    <select id="cidadeSelect"></select>
 
-    <div id="resultado" style="margin-top:16px;color:#222"></div>
+    <button id="btnBuscar">Buscar Clima</button>
 
-    <hr style="margin:20px 0" />
-    <div id="debug" style="color:#666;font-size:13px"></div>
-  </main>
+    <div id="resultado"></div>
 
-  <!-- IMPORTANT: somente esse script; type=module -->
-  <script type="module" src="assets/js/script.js"></script>
+    <br><br>
+    <button onclick="window.location.href='pages/details.html'">
+        Página de Detalhes do Projeto
+    </button>
+
+    <script type="module" src="assets/js/script.js"></script>
 </body>
 </html>

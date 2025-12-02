@@ -1,37 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Previsão do Tempo - Brasil</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8">
+    <title>Clima Brasil</title>
+    <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <main class="container">
-    <header class="header">
-      <h1>Previsão do Tempo</h1>
-      <button id="detailsBtn" class="link-btn">Detalhes do Projeto</button>
-    </header>
 
-    <form id="form">
-      <label for="citySelect">Selecione uma cidade:</label>
-      <select id="citySelect" required>
-        <option value="" disabled selected>Carregando cidades...</option>
-      </select>
-      <button type="submit">Buscar previsão</button>
-    </form>
+    <h1>Consulta de Clima</h1>
 
-    <section id="result" class="hidden">
-      <h2 id="cityName"></h2>
-      <p id="description"></p>
-      <p>Temperatura: <span id="temp"></span> °C</p>
-      <p>Sensação térmica: <span id="feels"></span> °C</p>
-      <p>Humidade: <span id="humidity"></span>%</p>
-    </section>
+    <label for="cidadeSelect">Selecione uma cidade:</label>
+    <select id="cidadeSelect"></select>
 
-    <p id="error" class="error hidden"></p>
-  </main>
+    <button id="btnBuscar">Buscar Clima</button>
 
-  <script src="assets/js/script.js" defer></script>
+    <div id="resultado"></div>
+
+    <br><br>
+    <button onclick="window.location.href='pages/detalhes.html'">
+        Página de Detalhes do Projeto
+    </button>
+
+    <script type="module" src="data/cidades-brasil.js"></script>
+    <script type="module" src="src/script.js"></script>
 </body>
 </html>

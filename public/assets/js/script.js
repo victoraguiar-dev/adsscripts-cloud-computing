@@ -43,12 +43,18 @@ function atualizarTelaClima(cidade, dados) {
 
     document.getElementById("cidadeNome").textContent = cidade;
 
-    document.getElementById("temperatura").textContent = dados.main.temp;
-    document.getElementById("umidade").textContent = dados.main.humidity;
-    document.getElementById("condicao").textContent = dados.weather[0].description;
+    document.getElementById("temperatura").textContent =
+        dados.main.temp + " °C";
 
-    document.getElementById("climaContainer").classList.remove("hidden");
+    document.getElementById("umidade").textContent =
+        dados.main.humidity + " %";
+
+    document.getElementById("condicao").textContent =
+        dados.weather[0].description;
+
+    document.getElementById("climaContainer").style.display = "block";
 }
+
 
 document.getElementById("cidadeSelect").addEventListener("change", (e) => {
     const cidade = e.target.value;

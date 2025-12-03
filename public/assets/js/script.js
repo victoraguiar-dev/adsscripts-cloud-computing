@@ -23,20 +23,22 @@ carregarCidades();
 async function buscarClima(cidade) {
     try {
         const response = await fetch(`/api/clima?cidade=${encodeURIComponent(cidade)}`);
+        const data = await response.json();
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar clima");
+            console.error("Erro retornado pela API:", data);
+            alert("Não foi possível obter o clima da cidade.");
+            return;
         }
 
-        const dados = await response.json();
-
-        atualizarTelaClima(cidade, dados);
+        atualizarTelaClima(data);
 
     } catch (error) {
         console.error("Erro ao buscar clima:", error);
-        alert("Não foi possível obter o clima da cidade.");
+        alert("Erro ao consultar o servidor.");
     }
 }
+
 
 
 function atualizarTelaClima(cidade, dados) {

@@ -1,127 +1,85 @@
-Consulta de Clima – Projeto Integrador (API + Serverless + Vercel)
+# Consulta de Clima - Projeto Integrador (API + Serverless + Vercel)
 
-Este projeto aplica os conceitos de cloud computin, consultando uma API externa (OpenWeatherMap), protegendo a chave de API e exibindo informações meteorológicas no navegador em HTML.
-A aplicação permite selecionar uma cidade de uma lista em JSON e visualizar temperatura, umidade e condição atual do clima.
+Este projeto demonstra a aplicação de conceitos de **cloud computing**, utilizando uma **Função Serverless** hospedada no **Vercel** para consultar uma **API externa (OpenWeatherMap)**. O objetivo é proteger a chave da API e exibir informações meteorológicas no navegador em HTML.
 
+A aplicação permite ao usuário selecionar uma cidade a partir de uma lista local em JSON e visualizar dados como **temperatura**, **umidade** e **condição atual do clima**.
 
-Estrutura do Projeto
-/
-├── vercel.json
-├── README.md
-├── api/
-│   └── clima.js
-└── public/
-    ├── index.html/
-    ├── pages/
-    │   ├── details.html
-    ├── assets/
-    │   ├── css/
-    │   │   └── style.css
-    │   ├── js/
-    │   │   └── script.js
-    │   └── data/
-    │       └── cidades.json
+---
 
-Tecnologias Utilizadas no Frontend
+## Estrutura do Projeto
 
-- HTML
-- CSS
-- JavaScript
+O projeto está organizado da seguinte forma:
 
-Tecnologias Utilizadas no Backend
+* **`vercel.json`**: Configurações do Vercel para o projeto.
+* **`README.md`**: Este arquivo.
+* **`api/clima.js`**: A Função Serverless (Backend).
+* **`public/index.html`**: Página principal para seleção da cidade.
+* **`public/pages/details.html`**: Página para exibição dos detalhes do clima.
+* **`public/assets/css/style.css`**: Estilos da aplicação (CSS).
+* **`public/assets/js/script.js`**: Lógica de interação do Front-end (JavaScript).
+* **`public/assets/data/cidades.json`**: Lista de cidades disponíveis para consulta.
 
-- API Externa OpenWeatherMap (https://openweathermap.org)
+---
 
-- Hospedagem cloud no Vercel (https://vercel.com/)
+## Tecnologias Utilizadas
 
-Arquitetura do Sistema
+### Frontend
+* **HTML**
+* **CSS**
+* **JavaScript**
 
-A arquitetura foi projetada para ser segura e escalável:
+### Backend & Infraestrutura
+* **API Externa**: [OpenWeatherMap](https://openweathermap.org)
+* **Hospedagem Cloud/Serverless**: [Vercel](https://vercel.com/) (Execução da Função Serverless e hospedagem do Front-end)
 
-1. Front-end
+---
 
-Carrega a lista de cidades via arquivo local (cidades.json), exibe os dados do clima e faz requisições ao backend.
+## Arquitetura do Sistema
 
-2. Função Serverless (Backend)
+A arquitetura foi projetada com foco em **segurança** e **escalabilidade**, separando a lógica de apresentação e a consulta à API.
 
-Arquivo:
-/api/clima.js
+### 1. Front-end
+* Carrega a lista de cidades a partir do arquivo local (`cidades.json`).
+* Controla a interface de usuário.
+* Faz requisições à **Função Serverless** do Vercel para obter os dados do clima.
 
-Responsável por:
-- Receber a cidade como parâmetro
-- Consultar a API OpenWeatherMap
-- Retornar o JSON para o front-end
-- Proteger a chave da API
+### 2. Função Serverless (Backend)
+**Arquivo:** `/api/clima.js`
 
-3. Vercel
+Esta função é executada sob demanda pelo Vercel e é a **única** responsável por:
+* Receber o nome da cidade como parâmetro da requisição do Front-end.
+* **Consultar a API OpenWeatherMap** (utilizando a chave de API segura).
+* Retornar o JSON com os dados do clima para o Front-end.
+* **Proteger a chave da API**, impedindo que ela seja exposta no código do cliente.
 
-Hospeda o site, executa a função serverless sob demanda e armazena a variável de ambiente (WEATHER_API_KEY)
+### 3. Vercel
+* Hospeda os arquivos estáticos do Front-end.
+* Executa a função Serverless (`/api/clima.js`) sob demanda.
+* **Armazena e injeta a variável de ambiente** com a chave da API.
 
-Funcionamento
-1. Carregamento da Lista de Cidades
+---
 
-O arquivo cidades.json contém uma lista simples:
+## Proteção da Chave da API (Security)
 
-[
-  "São Paulo",
-  "Rio de Janeiro",
-  "Belo Horizonte",
-  "Curitiba"
-]
+A chave da API **NÃO** fica armazenada no código do Front-end. A segurança é garantida pela injeção da variável de ambiente no **Vercel**:
 
-O JavaScript popula automaticamente o <select> ao carregar a página.
+* **Localização da Chave**: `Vercel` → `Settings` → `Environment Variables`
+* **Variável de Ambiente**: `WEATHER_API_KEY`
 
-2. Requisição do Clima
+O arquivo Serverless (`clima.js`) lê a chave do ambiente de execução de forma segura
 
-Ao selecionar uma cidade, o navegador envia:
+## Deploy na Vercel
 
-GET /api/clima?cidade=São Paulo
+O deploy é configurado para ocorrer automaticamente a partir do GitHub. Durante o processo, o Vercel:
 
-A função serverless consulta a OpenWeatherMap e retorna algo como:
+* Detecta o tipo de projeto.
+* Cria a rota Serverless em `/api/clima`.
+* Serve os arquivos estáticos localizados em `/public`.
+* Aplica as variáveis de ambiente (como a `WEATHER_API_KEY`).
+* Gera a URL final de produção para o acesso à aplicação.
 
-{
-  "main": { "temp": 25, "humidity": 60 },
-  "weather": [{ "description": "céu limpo" }]
-}
+---
 
-3. Exibição na Interface
-
-A aplicação mostra:
-
-- Cidade
-- Temperatura
-- Umidade
-- Condição do clima
-
-
-
-Proteção da Chave da API
-
-A chave NÃO fica armazenada no front-end. Ela está em:
-
-Vercel → Settings → Environment Variables
-
-Variável usada:
-
-WEATHER_API_KEY
-
-O arquivo clima.js lê a chave do ambiente:
-
-const apiKey = process.env.WEATHER_API_KEY;
-
-Deploy na Vercel
-
-O deploy ocorre automaticamente a partir do GitHub.
-
-A Vercel:
-
-- Detecta o projeto
-- Cria rota serverless em /api/clima
-- Serve os arquivos estáticos em /public
-- Aplica variáveis de ambiente
-- Gera URL final de produção
-
-
-Informações adicionais
+## Informações Adicionais
 
 Projeto acadêmico de uso livre para fins educacionais. Desenvolvido por Victor Aguiar como parte de estudos de computação em nuvem e integração com APIs.

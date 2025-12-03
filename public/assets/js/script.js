@@ -32,7 +32,7 @@ async function buscarClima(cidade) {
             return;
         }
 
-        atualizarTelaClima(cudade, data);
+        atualizarTelaClima(cidade, data);
 
     } catch (error) {
         console.error("Erro ao buscar clima:", error);

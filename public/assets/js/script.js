@@ -22,7 +22,8 @@ carregarCidades();
 
 async function buscarClima(cidade) {
     try {
-        const response = await fetch(`/api/clima?cidade=${encodeURIComponent(cidade)}`);
+        const base = "https://adsscripts-cloud-computing.vercel.app";
+        const response = await fetch(`${base}/api/clima?cidade=${encodeURIComponent(cidade)}`);
         const data = await response.json();
 
         if (!response.ok) {

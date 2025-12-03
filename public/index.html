@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Previsão do Tempo</title>
-    <link rel="stylesheet" href="public/assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima por Cidade</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+
     <main class="container">
-        <h1>Previsão do Tempo</h1>
-        
-        <label for="cidadeSelect">Selecione a Cidade:</label>
+        <h1>Consulta de Clima</h1>
+
+        <label for="cidadeSelect">Selecione uma cidade:</label>
         <select id="cidadeSelect">
-            <option value="">Carregando cidades...</option>
+            <option value="">Carregando...</option>
         </select>
 
         <div id="climaContainer" class="clima-card hidden">
-            <h2>Clima em <span id="cidadeNome"></span></h2>
-            <p><strong>Temperatura:</strong> <span id="temperatura"></span></p>
-            <p><strong>Umidade:</strong> <span id="umidade"></span></p>
+            <p><strong>Cidade:</strong> <span id="cidadeNome"></span></p>
+            <p><strong>Temperatura:</strong> <span id="temperatura"></span>°C</p>
+            <p><strong>Umidade:</strong> <span id="umidade"></span>%</p>
             <p><strong>Condição:</strong> <span id="condicao"></span></p>
         </div>
     </main>
 
-    <script src="public/assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

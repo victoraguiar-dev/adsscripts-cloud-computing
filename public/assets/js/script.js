@@ -1,9 +1,8 @@
 async function carregarCidades() {
-
     try {
-
         const response = await fetch("/assets/data/cidades.json");
         const cidades = await response.json();
+
         const select = document.getElementById("cidadeSelect");
         select.innerHTML = "<option value=''>Selecione uma cidade</option>";
 
@@ -12,35 +11,26 @@ async function carregarCidades() {
             option.value = cidade;
             option.textContent = cidade;
             select.appendChild(option);
-
         });
 
     } catch (error) {
         console.error("Erro ao carregar cidades:", error);
     }
-
 }
-
 
 carregarCidades();
 
-
 async function buscarClima(cidade) {
     try {
-        const API_URL = "/api/clima";
-
-
-        const response = await fetch(`${API_URL}?cidade=${encodeURIComponent(cidade)}`);
+        const response = await fetch(`/api/clima?cidade=${encodeURIComponent(cidade)}`);
 
         if (!response.ok) {
             throw new Error("Erro ao buscar clima");
         }
 
-        const clima = await response.json();
+        const dados = await response.json();
 
-        console.log("Clima recebido:", clima);
-
-        atualizarTelaClima(cidade, clima);
+        atualizarTelaClima(cidade, dados);
 
     } catch (error) {
         console.error("Erro ao buscar clima:", error);
@@ -48,15 +38,16 @@ async function buscarClima(cidade) {
     }
 }
 
+
 function atualizarTelaClima(cidade, dados) {
+
     document.getElementById("cidadeNome").textContent = cidade;
 
-    document.getElementById("temperatura").textContent = `${dados.main.temp}°C`;
-    document.getElementById("umidade").textContent = `${dados.main.humidity}%`;
-
+    document.getElementById("temperatura").textContent = dados.main.temp;
+    document.getElementById("umidade").textContent = dados.main.humidity;
     document.getElementById("condicao").textContent = dados.weather[0].description;
 
-    document.getElementById("climaContainer").style.display = "block";
+    document.getElementById("climaContainer").classList.remove("hidden");
 }
 
 document.getElementById("cidadeSelect").addEventListener("change", (e) => {
@@ -65,6 +56,6 @@ document.getElementById("cidadeSelect").addEventListener("change", (e) => {
     if (cidade) {
         buscarClima(cidade);
     } else {
-        document.getElementById("climaContainer").style.display = "none";
+        document.getElementById("climaContainer").classList.add("hidden");
     }
 });
